@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BMW Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">BMW Demo</a>
+        </div>
+    </div>
+    <div id="main" class="container">
+
+    </div>
+    <meta http-equiv="Content-Type" content="application/json; charset=UTF-8">
+    <!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
+    <script language="javascript">
+        function getRoadsign() {
+            var xmlhttp = new XMLHttpRequest();
+            var evnt = document.getElementById("roadsignGET");
+            var url = "http://localhost:8080/roadsign";
+            xmlhttp.open('GET',url,true);
+            xmlhttp.send();
+            console.log("xmlhttp has opened");
+            // xmlhttp.onreadystatechange = function(res, task) {
+            //         if ( xmlhttp.status == 200) {
+            //
+            //               res.json(task);
+            //
+            //          }
+            //          else
+            //                alert("Error ->" + xmlhttp.response);
+            // };
+            xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.status == 200) {
+
+                console.log(xmlhttp.response);
+                var output = document.getElementById("output");
+                output.innerHTML = "" + xmlhttp.responseText;
+
+              }
+              else {
+                alert("Error --> ", xmlhttp.response);
+              }
+            };
+        }
+
+        function addRoadsign() {
+            var xmlhttp = new XMLHttpRequest();
+            var evnt = document.getElementById("roadsignPOST");
+            var url = "http://localhost:8080/roadsign";
+            xmlhttp.open('POST',url,true);
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            var lat = document.getElementById("latPOST").value;
+            var lng = document.getElementById("lngPOST").value;
+            var slct = document.getElementById("notePOST");
+            var notes = slct.options[slct.selectedIndex].value;
+            var body = '{ "lat" :' + lat + ', "lng" :' + lng + ', "notes":"' + notes + '"}';
+            console.log("post body: ", body);
+
+            xmlhttp.send(body);
+            console.log("xmlhttp has opened");
+            xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.status == 200) {
+
+                console.log(xmlhttp.response);
+                var output = document.getElementById("output");
+                output.innerHTML = "" + xmlhttp.responseText;
+
+              }
+              else {
+                alert("Error --> ", xmlhttp.response);
+              }
+            };
+        }
+
+        function search() {
+            var xmlhttp = new XMLHttpRequest();
+            var evnt = document.getElementById("search");
+            var lat = document.getElementById("latSearch").value;
+            var lng = document.getElementById("lngSearch").value;
+            var radius = document.getElementById("radiusSearch").value;
+
+            var url = "http://localhost:8080/search?" + "lat=" +lat + "&lng=" + lng +"&radius=" + radius;
+            xmlhttp.open('GET',url,true);
+
+
+
+            xmlhttp.send();
+            console.log("xmlhttp has opened");
+            xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.status == 200) {
+
+                console.log(xmlhttp.response);
+                var output = document.getElementById("output");
+                output.innerHTML = "" + xmlhttp.responseText;
+              }
+              else {
+                alert("Error --> ", xmlhttp.response);
+              }
+            };
+
+        }
+
+
+    </script>
+
+
+    <button type ="button" id="roadsignGET" onclick="getRoadsign()" >
+    			 Show all roadsign</button>
+    <br>
+    <br>
+    <table>
+          <tr>
+              <td>Latitude</td>
+              <td><input type="number" id="latPOST" size="10"/> </td>
+          </tr>
+          <tr>
+              <td>Longtitude</td>
+              <td><input type="number" id="lngPOST" size="10"/> </td>
+          </tr>
+
+          <tr>
+              <td>Type</td>
+              <td>
+                <select id='notePOST'>
+                  <option value="SPEED_LIMIT_30">SPEED_LIMIT_30</option>
+                  <option value="SPEED_LIMIT_45">SPEED_LIMIT_30</option>
+                  <option value="STOP">STOP</option>
+                  <option value="YIELD">YIELD</option>
+                  <option value="ONE_WAY">ONE_WAY</option>
+                  <option value="DO_NOT_PASS">DO_NOT_PASS</option>
+                  <option value="NO_U_TURN">NO_U_TURN</option>
+                  <option value="NO_TURN_ON_RED">NO_TURN_ON_RED</option>
+                  <option value="LEFT_TURN_ONLY">LEFT_TURN_ONLY</option>
+                </select>
+              </td>
+          </tr>
+
+    </table>
+    <button type ="button" id="roadsignPOST" onclick="addRoadsign()" >
+    			 Add a roadsign</button>
+
+
+    <br>
+    <br>
+    <table>
+          <tr>
+              <td>Latitude</td>
+              <td><input type="number" id="latSearch" size="10"/> </td>
+          </tr>
+          <tr>
+              <td>Longtitude</td>
+              <td><input type="number" id="lngSearch" size="10"/> </td>
+          </tr>
+          <tr>
+              <td>Radius</td>
+              <td><input type="number" id="radiusSearch" size="10"/> </td>
+          </tr>
+    </table>
+    <button type ="button" id="search" onclick="return search();" >
+    			 Search roadsigns by lat, lng and radius</button>
+
+    <br>
+    <br>
+    <h4>Response:</h4>
+    <div id="output" ></div>
+
+</body>
+</html>
