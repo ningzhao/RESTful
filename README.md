@@ -5,7 +5,7 @@ html/javascript for frontend/client
 
 MongoDB is used for permanent data storage
 127.0.0.1:8080
-![image](https://github.com/ningzhao/githubImage/RESTful/mongo_roadsign_1.png)
+![mongoDB](https://github.com/ningzhao/githubImage/blob/master/RESTful/mongo_roadsign_1.png)
 
 #Notice
 installed packages for node.js by command line
