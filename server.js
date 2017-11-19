@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-var db = mongoose.connect('mongodb://"ec2-18-221-143-222.us-east-2.compute.amazonaws.com:8080"/bmw');
+var db = mongoose.connect('mongodb://ec2-18-221-143-222.us-east-2.compute.amazonaws.com:8080/bmw');
 
 db.connection.on("error", function(err) {
   console.log("failed in connection to database: ", err);
