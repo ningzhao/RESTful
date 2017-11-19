@@ -33,4 +33,4 @@ routes(app);
 app.listen(port);
 
 
-console.log('Roadsign RESTful API server started on: ' + port);
+console.log('Roadsign RESTful API server started on: ' + process.env.IP + ':'+ port);
