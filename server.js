@@ -1,14 +1,14 @@
 // @Ning created 11/12/2017
 
 var express = require('express'), app = express();
-var host = process.env.IP || '18.221.143.222',  port = process.env.port || 8080;
+var host = process.env.IP || '18.221.143.222',  port = process.env.port || '8080';
 var mongoose = require('mongoose');
 var RoadsignSchema = require('./api/models/roadsignModel');
 var bodyParser = require('body-parser');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-var db = mongoose.connect('mongodb://18.221.143.222:8080/bmw');
+var db = mongoose.connect('mongodb://127.0.0.1:27017/bmw');
 
 db.connection.on("error", function(err) {
   console.log("failed in connection to database: ", err);
