@@ -1,7 +1,7 @@
 // @Ning created 11/12/2017
 
 var express = require('express'), app = express();
-var host = process.env.IP || '0.0.0.0',  port = process.env.port || '3000';
+var host = process.env.IP || '127.0.0.1',  port = process.env.port || '3000';
 var mongoose = require('mongoose');
 var RoadsignSchema = require('./api/models/roadsignModel');
 var bodyParser = require('body-parser');
