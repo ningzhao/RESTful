@@ -16,7 +16,7 @@ db.connection.on("error", function(err) {
 });
 
 db.connection.on("open", function() {
-  console.log("dabase connected!");
+  console.log("database connected!");
 });
 
 app.use(bodyParser.urlencoded({ extended : true }));
@@ -38,6 +38,7 @@ app.listen(port, function() {
 });
 
 app.get('/', function(req, res) {
-  app.use(express.static("./api/public"));
   res.send("reached the main page");
+  // app.use(express.static("./api/public"));
+
 });
