@@ -5,6 +5,7 @@ var host = process.env.IP || '127.0.0.1',  port = process.env.port || '3000';
 var mongoose = require('mongoose');
 var RoadsignSchema = require('./api/models/roadsignModel');
 var bodyParser = require('body-parser');
+var http = require('http').Server(app);
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -20,7 +21,9 @@ db.connection.on("open", function() {
 
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
-app.use(express.static("./api/public"));
+// app.use(express.static("./api/public"));
+
+
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Headers", "*");
 //   res.header("Access-Control-Allow-Credentials", true);
@@ -30,7 +33,10 @@ app.use(express.static("./api/public"));
 var routes = require('./api/routes/mainRoute');
 routes(app);
 
-app.listen(port);
+app.listen(port, function() {
+  console.log('Roadsign RESTful API server started on: ' + host + ':'+ port);
+});
 
-
-console.log('Roadsign RESTful API server started on: ' + host + ':'+ port);
+app.get('/', function(req, res) {
+  app.use(express.static("./api/public"))
+});
