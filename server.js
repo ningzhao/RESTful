@@ -1,7 +1,7 @@
 // @Ning created 11/12/2017
 
 var express = require('express'), app = express();
-var host = process.env.IP || '127.0.0.1',  port = process.env.port || '3000';
+var port = process.env.port || '3000';
 var mongoose = require('mongoose');
 var RoadsignSchema = require('./api/models/roadsignModel');
 var bodyParser = require('body-parser');
@@ -34,9 +34,10 @@ var routes = require('./api/routes/mainRoute');
 routes(app);
 
 app.listen(port, function() {
-  console.log('Roadsign RESTful API server started on: ' + host + ':'+ port);
+  console.log('Roadsign RESTful API server started on: ' + port);
 });
 
 app.get('/', function(req, res) {
-  app.use(express.static("./api/public"))
+  app.use(express.static("./api/public"));
+  res.send("reached the main page");
 });
