@@ -23,7 +23,7 @@
         function getRoadsign() {
             var xmlhttp = new XMLHttpRequest();
             var evnt = document.getElementById("roadsignGET");
-            var url = "http://localhost:3000/roadsign";
+            var url = "http://localhost:8080/roadsign";
             xmlhttp.open('GET',url,true);
             xmlhttp.send();
             console.log("xmlhttp has opened");
@@ -53,7 +53,7 @@
         function addRoadsign() {
             var xmlhttp = new XMLHttpRequest();
             var evnt = document.getElementById("roadsignPOST");
-            var url = "http://localhost:3000/roadsign";
+            var url = "http://localhost:8080/roadsign";
             xmlhttp.open('POST',url,true);
             xmlhttp.setRequestHeader("Content-Type", "application/json");
             var lat = document.getElementById("latPOST").value;
@@ -86,7 +86,7 @@
             var lng = document.getElementById("lngSearch").value;
             var radius = document.getElementById("radiusSearch").value;
 
-            var url = "http://localhost:3000/search?" + "lat=" +lat + "&lng=" + lng +"&radius=" + radius;
+            var url = "http://localhost:8080/search?" + "lat=" +lat + "&lng=" + lng +"&radius=" + radius;
             xmlhttp.open('GET',url,true);
 
 

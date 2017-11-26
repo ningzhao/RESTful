@@ -21,7 +21,7 @@ db.connection.on("open", function() {
 
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
-// app.use(express.static("./api/public"));
+app.use(express.static("./api/public"));
 
 
 // app.use(function(req, res, next) {
@@ -37,8 +37,8 @@ app.listen(port, function() {
   console.log('Roadsign RESTful API server started on: ' + port);
 });
 
-app.get('/', function(req, res) {
-  res.send('reached the main page');
-  // app.use(express.static("./api/public"));
-
-});
+// app.get('/', function(req, res) {
+//   //res.send('reached the main page');
+//   // app.use(express.static("./api/public"));
+//
+// });
