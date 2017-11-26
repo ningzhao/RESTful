@@ -9,7 +9,7 @@ var http = require('http').Server(app);
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-var db = mongoose.connect('mongodb://127.0.0.1:27017/bmw');
+var db = mongoose.connect('mongodb://13.58.176.147:27017/bmw');
 
 db.connection.on("error", function(err) {
   console.log("failed in connection to database: ", err);
