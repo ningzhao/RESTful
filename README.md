@@ -4,6 +4,10 @@ AWS link:
 
 http://ec2-13-58-176-147.us-east-2.compute.amazonaws.com:8080/
 
+*Added extension for Chrome*
+
+Allow-Control-Allow-Origin: *
+
 node.js for backend/server
 
 html/javascript for frontend/client
@@ -39,11 +43,6 @@ $npm install express --save
 $npm install mongoose --save
 
 ![image](https://github.com/ningzhao/githubImage/blob/master/RESTful/server_preinstall_1.png)
-
-
-Added extension for Chrome
-
-Allow-Control-Allow-Origin: *
 
 
 ##Quick Start
