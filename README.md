@@ -1,5 +1,9 @@
 ##RESTful demo
 
+AWS link:
+
+http://ec2-13-58-176-147.us-east-2.compute.amazonaws.com:8080/
+
 node.js for backend/server
 
 html/javascript for frontend/client
